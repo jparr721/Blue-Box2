@@ -1,6 +1,8 @@
 package blueBox.GUI;
 
+import blueBox.DVD;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 /**
@@ -8,7 +10,14 @@ import javafx.scene.control.TextField;
  */
 public class RentalStoreGUIController {
 
+    @FXML private TextField ListArea;
+
+    @FXML private Button rentDVD, rentGame, checkOut, loadOld, saveSerial, loadSerial;
+
     @FXML
-    private TextField ListArea;
+    public void rentDVD(){
+
+
+    }
 
 }

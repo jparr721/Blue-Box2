@@ -4,15 +4,25 @@ package blueBox;
  * Created by Jarred on 11/6/16.
  */
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Game extends DVD {
+public class Game extends DVD implements Serializable {
 
-    private PlayerType player;   // Xbox 360, PS3, Xbox720.
+    protected GregorianCalendar rentedOn;
 
-    public double getCost(GregorianCalendar dat) {
+    protected GregorianCalendar dueBack;
+
+    protected String title;
+
+    protected String nameOfRenter;
+
+    private PlayerType player;
+    private GameType game;
+
+    public double getCost(GregorianCalendar date) {
         double cost = 5;
         return cost;
     }
@@ -22,14 +32,14 @@ public class Game extends DVD {
     }
 
     public Game(GregorianCalendar rentedOn, GregorianCalendar dueBack,
-                String title, String name, PlayerType player) {
-        super(rentedOn, dueBack, title, name);
-        this.player = player;
+                String title, String name, PlayerType player, GameType game) {
+
     }
 
-    public Game(PlayerType player) {
+    public Game(PlayerType player, GameType game) {
         super();
         this.player = player;
+        this.game = game;
     }
 
     public PlayerType getPlayer() {

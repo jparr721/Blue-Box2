@@ -24,7 +24,7 @@ public class DVD implements Serializable {
     /** Name of the person who is renting the DVD **/
     protected String nameOfRenter;
 
-    public double getCost(GregorianCalendar dat) {
+    public double getCost(GregorianCalendar date) {
         double cost = 1.2;
         return cost;
     }
