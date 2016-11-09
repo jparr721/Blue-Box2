@@ -50,10 +50,11 @@ public class DialogRentGame  extends JDialog implements ActionListener {
         // prevent user from closing window
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        // instantiate and display text fields
+        JPanel textPanel = new JPanel();
+        textPanel.setLayout(new GridLayout(6, 2));
 
-        setSize(300,300);
-        setVisible (true);
+        textPanel.add(new JLabel("Your Name: "));
+        renterTxt = new JTextField();
     }
 
     /**************************************************************
