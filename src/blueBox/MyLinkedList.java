@@ -3,6 +3,7 @@ package blueBox;
 /**
  * Created by Jarred on 11/7/16.
  */
+import javax.xml.soap.Node;
 import java.io.*;
 
 public class MyLinkedList<E> implements Serializable

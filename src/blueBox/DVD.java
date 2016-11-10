@@ -24,6 +24,8 @@ public class DVD implements Serializable {
     /** Name of the person who is renting the DVD **/
     protected String nameOfRenter;
 
+    private MovieType movie;
+
     public double getCost(GregorianCalendar date) {
         double cost = 1.2;
         return cost;
@@ -32,19 +34,21 @@ public class DVD implements Serializable {
     public DVD() {
     }
 
-    public DVD(GregorianCalendar rentedOn, GregorianCalendar dueBack, String title, String name) {
+    public DVD(GregorianCalendar rentedOn, GregorianCalendar dueBack,
+               String title, String name, MovieType movie) {
         super();
         this.rentedOn = rentedOn;
         this.dueBack = dueBack;
         this.title = title;
         this.nameOfRenter = name;
+        this.movie = movie;
     }
 
     public GregorianCalendar getRentedOn() {
         return rentedOn;
     }
-    public void setRentedOn(GregorianCalendar opened) {
-        this.rentedOn = opened;
+    public void setRentedOn(GregorianCalendar rentedOn) {
+        this.rentedOn = rentedOn;
     }
     public GregorianCalendar getDueBack() {
         return dueBack;
@@ -56,15 +60,16 @@ public class DVD implements Serializable {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
 
+    public MovieType getMovieTitle() { return movie; }
+    public void setMovieTitle(MovieType movie) { this.movie = movie; }
+
     public String getNameOfRenter() {
         return nameOfRenter;
     }
-
     public void setNameOfRenter(String nameOfRenter) {
         this.nameOfRenter = nameOfRenter;
     }
