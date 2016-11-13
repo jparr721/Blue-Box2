@@ -1,11 +1,14 @@
 package blueBox.GUI;
 
 import blueBox.DVD;
+import blueBox.MovieType;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -31,6 +34,7 @@ public class RentalStoreGUIController {
 
             newStage.setScene(scene);
             newStage.setTitle("Movie Rental v1.0");
+            newStage.setResizable(false);
             newStage.show();
 
         } catch (IOException e){

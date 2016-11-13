@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blueBox.GUI.RentDVDDialogController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -50,7 +50,7 @@
             <Label text="Enter Name" GridPane.halignment="CENTER" />
             <TextField GridPane.columnIndex="1" />
             <Button mnemonicParsing="false" text="Add to Cart" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Button fx:id="cancel" mnemonicParsing="false" onAction="#handleCancelButtonAction" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <Label text="Rented On" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Label text="Due Back" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
