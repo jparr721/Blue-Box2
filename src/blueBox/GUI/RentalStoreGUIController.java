@@ -13,17 +13,21 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 
 /**
  * Created by Jarred on 11/8/16.
  */
 public class RentalStoreGUIController {
 
+    @FXML public double DvdCounter = 0;
+    @FXML public double GameCounter = 0;
+
     @FXML private TextField listArea, totalDue;
 
     @FXML
     public void rentDVD(){
-
+        DvdCounter++;
         try {
             Parent root = FXMLLoader.load(
                     getClass().getResource("/RentDVDDialog.fxml"));
@@ -45,7 +49,7 @@ public class RentalStoreGUIController {
 
     @FXML
     public void rentGame(){
-
+        GameCounter++;
         try {
             Parent root = FXMLLoader.load(
                     getClass().getResource("/RentGameDialog.fxml"));
@@ -85,7 +89,13 @@ public class RentalStoreGUIController {
         }
     }
 
-    public void calculateTotal(){
+    @FXML public void calculateTotal(){
 
+        double gameTotal = (GameCounter * 5);
+        double movieTotal = (DvdCounter * 1.2);
+        double total = gameTotal + movieTotal;
+
+        NumberFormat dollarFormat = NumberFormat.getCurrencyInstance();
+        totalDue.setText(dollarFormat.format(total));
     }
 }

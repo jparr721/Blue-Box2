@@ -1,6 +1,7 @@
 package blueBox.GUI;
 
 import blueBox.GameType;
+import blueBox.PlayerType;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -13,6 +14,10 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
@@ -22,25 +27,24 @@ import java.util.ResourceBundle;
 public class RentGameDialogController extends RentalStoreGUIController implements Initializable{
 
     @FXML private TextField nameField, rentedOn, dueBack;
-    @FXML String name;
-    @FXML GregorianCalendar rented, due;
+    String name;
+    Date dateRentedOn, dateDue;
+    GregorianCalendar rented, due;
     @FXML ComboBox<GameType> cbGame;
+    @FXML ComboBox<PlayerType> cbConsole;
     @FXML Button cancel, addToCart;
     @FXML int counter = 0;
+    private Stage currentStage;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        rentedOn = new TextField();
-        dueBack = new TextField();
-
-        rented = new GregorianCalendar();
-        due = new GregorianCalendar();
-
-        cbGame = new ComboBox<>();
+        cbGame.getItems().addAll(GameType.values());
+        cbConsole.getItems().addAll(PlayerType.values());
     }
 
-    @FXML
+
+
     public void getName(){
         name = nameField.getText();
 
@@ -55,20 +59,29 @@ public class RentGameDialogController extends RentalStoreGUIController implement
         }
     }
 
+    public void getRentedOn() throws ParseException {
+        DateFormat format = new SimpleDateFormat("MM/dd/yy");
+        dateRentedOn = format.parse(rentedOn.getText());
+        rented.setTime(dateRentedOn);
+    }
+
+    public void getDueBack() throws ParseException {
+        DateFormat format = new SimpleDateFormat("MM/dd/yy");
+        dateDue = format.parse(dueBack.getText());
+        due.setTime(dateDue);
+    }
+
 
     @FXML
     public void handleCancelButtonAction (ActionEvent event) {
-        Stage stage = (Stage) cancel.getScene().getWindow();
-        stage.close();
+        currentStage = (Stage) cancel.getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML
     public void addToCartButton (ActionEvent event) {
-        Stage stage = (Stage) addToCart.getScene().getWindow();
-        getName();
-        counter++;
-        stage.close();
 
-
+        currentStage = (Stage) cancel.getScene().getWindow();
+        currentStage.close();
     }
 }
