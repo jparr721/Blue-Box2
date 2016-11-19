@@ -1,9 +1,11 @@
 package blueBox.GUI;
 
 import blueBox.GameType;
+import blueBox.MovieType;
 import blueBox.PlayerType;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
@@ -26,24 +29,48 @@ import java.util.ResourceBundle;
  */
 public class RentGameDialogController extends RentalStoreGUIController implements Initializable{
 
-    @FXML private TextField nameField, rentedOn, dueBack;
-    String name;
-    Date dateRentedOn, dateDue;
-    GregorianCalendar rented, due;
-    @FXML ComboBox<GameType> cbGame;
-    @FXML ComboBox<PlayerType> cbConsole;
+    /** TextField Objects **/
+    @FXML private TextField nameField, rentedOnField, dueBackField;
+
+    /** String for NameField **/
+    String name, rentedOn, dueBack;
+
+    /** Game ComboBox ID's **/
+    @FXML private ObservableList<GameType> cbGameOptions;
+    @FXML private ComboBox<GameType> cbGame;
+
+    /** Console ComboBox ID's **/
+    @FXML private ObservableList<PlayerType> cbConsoleOptions;
+    @FXML private ComboBox<PlayerType> cbConsole;
+
+    /** GameType object **/
+    private GameType game;
+
+    /** Button ID's **/
     @FXML Button cancel, addToCart;
-    @FXML int counter = 0;
+
+    /** Counter for calculating total **/
+    int counter;
+
+    /** Stage for closing GUI **/
     private Stage currentStage;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cbGame.getItems().addAll(GameType.values());
-        cbConsole.getItems().addAll(PlayerType.values());
+
+        /** Select Console **/
+        cbConsoleOptions = FXCollections.observableArrayList();
+        for (PlayerType p : PlayerType.values()) { cbConsoleOptions.addAll(p); }
+        cbConsole.getItems().addAll(cbConsoleOptions);
+
+        /** Select Game **/
+        cbGameOptions = FXCollections.observableArrayList();
+        for (GameType g : GameType.values()){ cbGameOptions.addAll(g); }
+        cbGame.getItems().addAll(cbGameOptions);
+
     }
-
-
 
     public void getName(){
         name = nameField.getText();
@@ -59,16 +86,59 @@ public class RentGameDialogController extends RentalStoreGUIController implement
         }
     }
 
+    public void getGame() {
+        GameType gameChoice = cbGame.getSelectionModel().getSelectedItem();
+    }
+
+    public void getConsole() {
+        PlayerType player = cbConsole.getSelectionModel().getSelectedItem();
+    }
+
     public void getRentedOn() throws ParseException {
-        DateFormat format = new SimpleDateFormat("MM/dd/yy");
-        dateRentedOn = format.parse(rentedOn.getText());
-        rented.setTime(dateRentedOn);
+
+        rentedOn = rentedOnField.getText();
+
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date rentedOnDate = format.parse(rentedOn);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setLenient(false);
+        cal.setTime(rentedOnDate);
+
+        try {
+
+            cal.getTime();
+
+        } catch (Exception e) {
+            System.exit(0);
+        }
+
     }
 
     public void getDueBack() throws ParseException {
-        DateFormat format = new SimpleDateFormat("MM/dd/yy");
-        dateDue = format.parse(dueBack.getText());
-        due.setTime(dateDue);
+
+        dueBack = dueBackField.getText();
+
+        DateFormat format = new SimpleDateFormat("dd?MM/yyyy");
+        Date dueBackDate = format.parse(dueBack);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setLenient(false);
+        cal.setTime(dueBackDate);
+
+        try {
+
+            cal.getTime();
+            
+        } catch (Exception e) {
+            System.exit(0);
+        }
+    }
+
+    public void storePurchaseData() {
+        counter++;
+
+
     }
 
 
@@ -80,7 +150,7 @@ public class RentGameDialogController extends RentalStoreGUIController implement
 
     @FXML
     public void addToCartButton (ActionEvent event) {
-
+        storePurchaseData();
         currentStage = (Stage) cancel.getScene().getWindow();
         currentStage.close();
     }

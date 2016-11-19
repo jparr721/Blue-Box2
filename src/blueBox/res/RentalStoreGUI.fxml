@@ -45,7 +45,7 @@
             <Button mnemonicParsing="false" onAction="#rentDVD" text="Rent DVD" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#rentGame" text="Rent Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#checkOut" text="Check Out" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="Load Old" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#testButton" text="Load Old" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" text="Save Serial" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" text="Load Serial" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Label text="Total" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
