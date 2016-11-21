@@ -9,9 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +27,24 @@ public class RentalStoreGUIController implements Initializable{
     public GameType gameType;
 
     @FXML private TextField listArea, totalDue;
+
+    @FXML private Menu menu;
+    @FXML private MenuBar menuBar;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        menu = new Menu("File");
+        menu.getItems().add(new MenuItem("Close"));
+        menuBar = new MenuBar();
+        menuBar.getMenus().add(menu);
+    }
+
+    @FXML
+    public void appendTextArea(String purchase){
+        System.out.println(purchase);
+        //listArea.setText(purchase);
+
+    }
 
     @FXML
     public void rentDVD(){
@@ -92,13 +108,8 @@ public class RentalStoreGUIController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    @FXML
-    public void testButton() {
-        for (GameType g : GameType.values()){
-            System.out.println(g);
-        }
+        calculateTotal();
     }
 
     @FXML public void calculateTotal(){
@@ -111,8 +122,4 @@ public class RentalStoreGUIController implements Initializable{
         totalDue.setText(dollarFormat.format(total));
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }

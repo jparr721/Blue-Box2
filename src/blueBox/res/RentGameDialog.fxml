@@ -49,8 +49,8 @@
             <Button fx:id="cancel" mnemonicParsing="false" onAction="#handleCancelButtonAction" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
             <Label text="Rented On" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Label text="Due Back" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <TextField fx:id="rentedOn" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="dueBack" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="rentedOnField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="dueBackField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ComboBox fx:id="cbGame" prefWidth="150.0" promptText="Select Game" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="cbConsole" prefWidth="150.0" promptText="Select Console" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>

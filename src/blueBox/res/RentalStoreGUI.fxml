@@ -27,10 +27,10 @@
       </MenuBar>
    </top>
    <left>
-      <TextField maxHeight="400.0" maxWidth="400.0" prefHeight="371.0" prefWidth="426.0" BorderPane.alignment="CENTER" />
+      <TextField fx:id="listArea" maxHeight="400.0" maxWidth="400.0" prefHeight="371.0" prefWidth="426.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <GridPane maxHeight="200.0" maxWidth="270.0" prefHeight="150.0" prefWidth="184.0" BorderPane.alignment="CENTER">
+      <GridPane maxHeight="200.0" maxWidth="270.0" prefHeight="200.0" prefWidth="196.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -45,11 +45,11 @@
             <Button mnemonicParsing="false" onAction="#rentDVD" text="Rent DVD" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#rentGame" text="Rent Game" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#checkOut" text="Check Out" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#testButton" text="Load Old" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" text="Load Old" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" text="Save Serial" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" text="Load Serial" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Label text="Total" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="totalDue" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#calculateTotal" text="Calculate" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </right>

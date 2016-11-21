@@ -1,9 +1,7 @@
 package blueBox.GUI;
 
 import blueBox.GameType;
-import blueBox.MovieType;
 import blueBox.PlayerType;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,14 +12,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 /**
@@ -46,14 +42,18 @@ public class RentGameDialogController extends RentalStoreGUIController implement
     /** GameType object **/
     private GameType game;
 
+    /** PlayerType Object **/
+    private PlayerType console;
+
     /** Button ID's **/
     @FXML Button cancel, addToCart;
 
     /** Counter for calculating total **/
-    int counter;
+    int gameCounter;
 
     /** Stage for closing GUI **/
     private Stage currentStage;
+
 
 
 
@@ -72,7 +72,7 @@ public class RentGameDialogController extends RentalStoreGUIController implement
 
     }
 
-    public void getName(){
+    public String getName(){
         name = nameField.getText();
 
         try {
@@ -84,19 +84,22 @@ public class RentGameDialogController extends RentalStoreGUIController implement
         } catch (Exception e){
             e.printStackTrace();
         }
+
+        return name;
     }
 
-    public void getGame() {
-        GameType gameChoice = cbGame.getSelectionModel().getSelectedItem();
+    public String getGame() {
+        return cbGame.getSelectionModel().getSelectedItem().toString();
     }
 
-    public void getConsole() {
-        PlayerType player = cbConsole.getSelectionModel().getSelectedItem();
+    public String getConsole() {
+        return cbConsole.getSelectionModel().getSelectedItem().toString();
     }
 
-    public void getRentedOn() throws ParseException {
+    public String getRentedOn() throws ParseException {
 
         rentedOn = rentedOnField.getText();
+
 
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date rentedOnDate = format.parse(rentedOn);
@@ -113,13 +116,16 @@ public class RentGameDialogController extends RentalStoreGUIController implement
             System.exit(0);
         }
 
+        return rentedOn;
+
     }
 
-    public void getDueBack() throws ParseException {
+    public String getDueBack() throws ParseException {
 
         dueBack = dueBackField.getText();
 
-        DateFormat format = new SimpleDateFormat("dd?MM/yyyy");
+
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date dueBackDate = format.parse(dueBack);
 
         Calendar cal = Calendar.getInstance();
@@ -129,16 +135,31 @@ public class RentGameDialogController extends RentalStoreGUIController implement
         try {
 
             cal.getTime();
-            
+
         } catch (Exception e) {
             System.exit(0);
         }
+
+        return dueBack;
+
     }
 
-    public void storePurchaseData() {
-        counter++;
+    /*************************************
+     * This is the method to call the other
+     * String methods so their output can be
+     * put into my main GUI
+     *
+     *
+     * @return
+     * @throws ParseException
+     *************************************/
 
+    public String storePurchaseData() throws ParseException {
+        gameCounter++;
+        String toList = getName() + " | " + getGame() + " | " + getConsole() + " | " +
+                getRentedOn() + " | " + getDueBack();
 
+        return toList;
     }
 
 
@@ -149,8 +170,8 @@ public class RentGameDialogController extends RentalStoreGUIController implement
     }
 
     @FXML
-    public void addToCartButton (ActionEvent event) {
-        storePurchaseData();
+    public void addToCartButton (ActionEvent event) throws ParseException {
+        appendTextArea(storePurchaseData());
         currentStage = (Stage) cancel.getScene().getWindow();
         currentStage.close();
     }

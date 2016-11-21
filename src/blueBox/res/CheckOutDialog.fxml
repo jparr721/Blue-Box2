@@ -4,8 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blueBox.GUI.CheckOutDialogController">
    <center>
       <GridPane maxHeight="80.0" maxWidth="400.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -18,9 +17,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Total Amount Due" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label text="Total Amount Due" GridPane.halignment="CENTER" />
+            <TextField GridPane.columnIndex="1" />
+            <Button fx:id="ok" mnemonicParsing="false" onAction="#okButton" prefHeight="27.0" prefWidth="40.0" text="OK" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label text="Enter Payment Amount" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="40.0" text="OK" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>
