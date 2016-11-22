@@ -36,11 +36,19 @@ public class RentDVDDialogController extends RentalStoreGUIController implements
     private Stage currentStage;
 
     /** Button Objects **/
-    @FXML Button cancel;
+    @FXML Button cancel, addToCart;
 
     /** Counter for check out dialogue **/
     int movieCounter;
 
+    /*******************************************************
+     * Method to initialize whatever method is placed within it
+     * which runs the code before the GUI is called, which in this
+     * case loads the Combo Box options and stores them in the GUI
+     *
+     * @param location is not used in this context
+     * @param resources is not used in this context
+     *******************************************************/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,6 +60,12 @@ public class RentDVDDialogController extends RentalStoreGUIController implements
 
     }
 
+    /*********************************************************
+     * Retreives the name stored within the nameField  Text Field
+     * and returns it so it can be used in the main GUI Text Field
+     *
+     * @return name
+     *********************************************************/
     public String getName() {
         name = nameField.getText();
 
@@ -68,9 +82,28 @@ public class RentDVDDialogController extends RentalStoreGUIController implements
         return name;
     }
 
+    /***************************************************************
+     * Gets the user selected DVD from the Combo Box
+     *
+     * @return Selected Combo Box item
+     ***************************************************************/
+
     public String getDVD() {
         return cbMovie.getSelectionModel().getSelectedItem().toString();
     }
+
+    /**************************************************************
+     * This method takes the date the DVD is to be rented on in the GUI
+     * and then stores it in the rentedOn String variable.
+     *
+     * There is also a test written to convert it to date format, and
+     * check if it is a real date. If wrong date, Text Field says
+     * "ERROR"
+     *
+     * @return rentedOn
+     * @throws ParseException to check for invalid dates in the
+     * rentedOnField
+     **************************************************************/
 
     public String getRentedOn() throws ParseException {
 
@@ -88,11 +121,23 @@ public class RentDVDDialogController extends RentalStoreGUIController implements
             cal.getTime();
 
         } catch (Exception e) {
-            System.exit(0);
+            rentedOnField.setText("ERROR");
         }
 
         return rentedOn;
     }
+
+    /****************************************************************
+     * This method takes the date the DVD is to be returned on in the GUI
+     * an then stores it in the dueBack String variable.
+     *
+     * There is also a test written that converts dueBack into date format,
+     * then checks if the date is real. If it's the wrong date, then the
+     * Text Field says "ERROR"
+     *
+     * @return dueBack
+     * @throws ParseException to check for invalid dates in the dueBackField
+     ****************************************************************/
 
     public String getDueBack() throws ParseException {
 
@@ -110,7 +155,7 @@ public class RentDVDDialogController extends RentalStoreGUIController implements
             cal.getTime();
 
         } catch (Exception e) {
-            System.exit(0);
+            dueBackField.setText("ERROR");
         }
 
         return dueBack;
@@ -125,8 +170,8 @@ public class RentDVDDialogController extends RentalStoreGUIController implements
 
     @FXML
     public void handleCancelButtonAction (ActionEvent event) {
-        Stage stage = (Stage) cancel.getScene().getWindow();
-        stage.close();
+        currentStage = (Stage) cancel.getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML

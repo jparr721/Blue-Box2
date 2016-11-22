@@ -10,6 +10,8 @@ import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ResourceBundle;
 
+import static java.lang.Double.parseDouble;
+
 /**
  * Created by Jarred on 11/9/16.
  */
@@ -18,16 +20,26 @@ public class CheckOutDialogController extends RentalStoreGUIController implement
     /** Stage for closing GUI **/
     private Stage currentStage;
 
-    @FXML TextField changeField;
+    @FXML TextField changeField, paymentField;
 
-    @FXML Button ok;
+    @FXML Button ok, pay;
+
+    RentalStoreGUIController g = new RentalStoreGUIController();
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
 
     }
 
-    
+    @FXML
+    public void payButton() {
+
+        double totalPayment = parseDouble(paymentField.getText());
+        double change = (totalPayment - g.calculateTotal());
+        changeField.setText(Double.toString(change));
+
+
+    }
 
     @FXML
     public void okButton() {

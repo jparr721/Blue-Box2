@@ -42,7 +42,7 @@ public class RentalStoreGUIController implements Initializable{
     @FXML
     public void appendTextArea(String purchase){
         System.out.println(purchase);
-        //listArea.setText(purchase);
+
 
     }
 
@@ -112,7 +112,7 @@ public class RentalStoreGUIController implements Initializable{
         calculateTotal();
     }
 
-    @FXML public void calculateTotal(){
+    @FXML public double calculateTotal(){
 
         double gameTotal = (GameCounter * 5);
         double movieTotal = (DvdCounter * 1.2);
@@ -120,6 +120,8 @@ public class RentalStoreGUIController implements Initializable{
 
         NumberFormat dollarFormat = NumberFormat.getCurrencyInstance();
         totalDue.setText(dollarFormat.format(total));
+
+        return total;
     }
 
 }

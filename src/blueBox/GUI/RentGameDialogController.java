@@ -113,7 +113,7 @@ public class RentGameDialogController extends RentalStoreGUIController implement
             cal.getTime();
 
         } catch (Exception e) {
-            System.exit(0);
+            rentedOnField.setText("ERROR");
         }
 
         return rentedOn;
@@ -137,7 +137,7 @@ public class RentGameDialogController extends RentalStoreGUIController implement
             cal.getTime();
 
         } catch (Exception e) {
-            System.exit(0);
+            dueBackField.setText("ERROR");
         }
 
         return dueBack;
@@ -164,13 +164,13 @@ public class RentGameDialogController extends RentalStoreGUIController implement
 
 
     @FXML
-    public void handleCancelButtonAction (ActionEvent event) {
+    public void handleCancelButtonAction () {
         currentStage = (Stage) cancel.getScene().getWindow();
         currentStage.close();
     }
 
     @FXML
-    public void addToCartButton (ActionEvent event) throws ParseException {
+    public void addToCartButton () throws ParseException {
         appendTextArea(storePurchaseData());
         currentStage = (Stage) cancel.getScene().getWindow();
         currentStage.close();
