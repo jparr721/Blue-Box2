@@ -6,15 +6,29 @@ package blueBox;
 import javax.xml.soap.Node;
 import java.io.*;
 
-public class MyLinkedList<E> implements Serializable
-{
-    private DNode<E> top;
+public class MyLinkedList implements Serializable {
+
+    private Node head;
     public int size;
 
     public MyLinkedList() {
-        top = null;
+        head = null;
         size = 0;
     }
 
+    public void add(Object data) {
+
+        Node temp = new Node(data);
+        Node curr = head;
+
+        if (head == null) {
+            head = temp;
+        } else {
+            while (curr.getNext() != null){
+                curr = curr.getNext();
+            }
+        }
+
+    }
 
 }

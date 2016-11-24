@@ -1,6 +1,7 @@
 package blueBox.GUI;
 
 import blueBox.GameType;
+import blueBox.MyLinkedList;
 import blueBox.PlayerType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,6 +54,8 @@ public class RentGameDialogController extends RentalStoreGUIController implement
 
     /** Stage for closing GUI **/
     private Stage currentStage;
+
+    private MyLinkedList list = new MyLinkedList();
 
 
 
@@ -158,6 +161,8 @@ public class RentGameDialogController extends RentalStoreGUIController implement
         gameCounter++;
         String toList = getName() + " | " + getGame() + " | " + getConsole() + " | " +
                 getRentedOn() + " | " + getDueBack();
+
+
 
         return toList;
     }
