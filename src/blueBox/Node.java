@@ -1,33 +1,31 @@
 package blueBox;
 
+import java.io.Serializable;
+
 /**
  * Created by Jarred on 11/24/16.
  */
-public class Node {
+public class Node<E> implements Serializable{
 
-    Node next;
-    Object data;
+    private E value;
+    private Node<E> next;
 
-    public Node(Object data){
-        this(data, null);
+
+    public Node(E value){
+        this.value = value;
+        this.next = null;
     }
 
-    public Node(Object data, Node next){
-        this.next = next;
-        this.data = data;
+    public void setValue(E value){
+        this.value = value;
     }
 
-    public Object getData() { return this.data; }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
+    public void setNext(Node next){ this.next = next; }
 
     public Node getNext() {
         return this.next;
     }
 
-    public void setNext(Node nextNode) {
-        this.next = nextNode;
-    }
+    public E getValue() { return value; }
+
 }

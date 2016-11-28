@@ -14,18 +14,15 @@ import java.util.GregorianCalendar;
  * its methods. Its main purpose is to set up getters and
  * setters for anything that would pertain to the Game
  * selection and dialog box.
- *******************************************************/
-public class Game extends DVD implements Serializable {
+*/
 
-    /** Creating Object of type PlayerType **/
-    private PlayerType player;
+public class Game extends DVD {
 
-    /** Creating Object of type GameType **/
-    private GameType game;
+    private PlayerType player;   // Xbox 360, PS3, Xbox720.
 
-    public double getCost(GregorianCalendar date) {
-        double cost = 5;
-        return cost;
+    public double getCost(GregorianCalendar dat) {
+        int compare = dat.compareTo(this.getDueBack());
+        return compare < 0 ? 5 : 10;
     }
 
     public Game() {
@@ -33,34 +30,23 @@ public class Game extends DVD implements Serializable {
     }
 
     public Game(GregorianCalendar rentedOn, GregorianCalendar dueBack,
-                String title, String name, PlayerType player, GameType game) {
-        super();
-        this.rentedOn = rentedOn;
-        this.dueBack = dueBack;
-        this.title = title;
-        this.nameOfRenter = name;
-        this.game = game;
+                String title, String name, PlayerType player) {
+        super(rentedOn, dueBack, title, name);
         this.player = player;
-
     }
 
-    public GregorianCalendar getRentedOn() { return rentedOn; }
-    public void setRentedOn(GregorianCalendar rentedOn) { this.rentedOn = rentedOn; }
-    public GregorianCalendar getDueBack() { return dueBack; }
-    public void setDueBack(GregorianCalendar dueBack) { this.dueBack = dueBack; }
-
-    public GameType getGameTitle() { return game; }
-    public void setGameTitle(GameType game) { this.game = game; }
+    public Game(PlayerType player) {
+        super();
+        this.player = player;
+    }
 
     public PlayerType getPlayer() {
         return player;
     }
+
     public void setPlayer(PlayerType player) {
         this.player = player;
     }
 
-    public String getNameOfRenter() { return nameOfRenter; }
-    public void setNameOfRenter(String nameOfRenter) { this.nameOfRenter = nameOfRenter; }
 
-
-}
+ }

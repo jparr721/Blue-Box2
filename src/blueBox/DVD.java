@@ -11,37 +11,25 @@ import java.util.GregorianCalendar;
 public class DVD implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    /** The Date the DVD/Game was Rented **/
     protected GregorianCalendar rentedOn;
-
-    /** The Date the DVD/Game is due back **/
     protected GregorianCalendar dueBack;
-
-    /** The title of the DVD/Game **/
     protected String title;
-
-    /** Name of the person who is renting the DVD **/
     protected String nameOfRenter;
 
-    private MovieType movie;
-
-    public double getCost(GregorianCalendar date) {
-        double cost = 1.2;
-        return cost;
+    public double getCost(GregorianCalendar dat) {
+        int compare = dat.compareTo(this.getDueBack());
+        return compare < 0 ? 1.2 : 2;
     }
 
     public DVD() {
     }
 
-    public DVD(GregorianCalendar rentedOn, GregorianCalendar dueBack,
-               String title, String name, MovieType movie) {
+    public DVD(GregorianCalendar rentedOn, GregorianCalendar dueBack, String title, String name) {
         super();
         this.rentedOn = rentedOn;
         this.dueBack = dueBack;
         this.title = title;
         this.nameOfRenter = name;
-        this.movie = movie;
     }
 
     public GregorianCalendar getRentedOn() {
@@ -60,16 +48,15 @@ public class DVD implements Serializable {
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public MovieType getMovieTitle() { return movie; }
-    public void setMovieTitle(MovieType movie) { this.movie = movie; }
-
     public String getNameOfRenter() {
         return nameOfRenter;
     }
+
     public void setNameOfRenter(String nameOfRenter) {
         this.nameOfRenter = nameOfRenter;
     }

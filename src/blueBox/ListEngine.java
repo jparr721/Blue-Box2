@@ -7,65 +7,44 @@ package blueBox;
 import javax.swing.*;
 import java.io.*;
 import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.table.AbstractTableModel;
 
-public class ListEngine extends AbstractListModel {
+public class ListEngine extends AbstractTableModel {
 
     private LinkedList<DVD> listDVDs;
+
+    private String[] columns;
 
     public ListEngine() {
         super();
         listDVDs = new LinkedList<DVD>();
+        columns = new String[] {"Name", "Title", "Console", "Rented On", "Due Back"};
     }
 
     public DVD remove(int i) {
         DVD unit = listDVDs.remove(i);
-        fireIntervalRemoved(this, 0, listDVDs.size());
+        fireTableRowsDeleted(listDVDs.size(), listDVDs.size());
         return unit;
     }
 
     public void add (DVD a) {
         listDVDs.add(a);
-        fireIntervalAdded(this, 0, listDVDs.size());
+        fireTableRowsInserted(listDVDs.size() - 1, listDVDs.size() - 1);
     }
 
     public DVD get (int i) {
         return listDVDs.get(i);
     }
 
-    public Object getElementAt(int arg0) {
-
-        //	return "Happy";
-
-        DVD unit = listDVDs.get(arg0);
-
-        //return unit; //.getNameOfRenter();
-
-        String dueDateStr = DateFormat.getDateInstance(DateFormat.SHORT)
-                .format(unit.getDueBack().getTime());
-
-        String rentedOnDateStr = DateFormat.getDateInstance(DateFormat.SHORT)
-                .format(unit.getRentedOn().getTime());
-
-        String line = "Name: " + " " + listDVDs.get(arg0).getNameOfRenter() +
-                ",  Title: " + listDVDs.get(arg0).title +
-                ",  rentedOn on: " + rentedOnDateStr +
-                ",  Due back on: " + dueDateStr;
-
-        if (unit instanceof Game)
-            line += ", Game Player: " + ((Game)unit).getPlayer();
-
-        return line;
+    public Object getElementAt(int row, int column) {
+        return null;
     }
 
-    public int getSize() {
-        //return 5;
+    public int getSize(){
         return listDVDs.size();
     }
 
-    // not used.... but interesting and it does work
 
     public void saveDatabase(String filename) {
         try {
@@ -79,17 +58,17 @@ public class ListEngine extends AbstractListModel {
         }
     }
 
-    /**
+    /*******************************************************************
      * Loads (deserializes) the Account objects from the specified file.
+     *
      * @param filename name of the file to load from.
-     */
+     *******************************************************************/
     public void loadDatabase(String filename) {
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream is = new ObjectInputStream(fis);
 
             listDVDs = (LinkedList<DVD>) is.readObject();
-            fireIntervalAdded(this, 0, listDVDs.size() - 1);
             is.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"Error in loading db");
@@ -127,7 +106,55 @@ public class ListEngine extends AbstractListModel {
         }
     }
 
-    public void loadFromText(String filename) {
+    public void loadFromText(String filename) {}
 
+    /*************************************************
+     * Overriden method that changes the names of the
+     * columns from their usual "A, B, C, D" etc. name
+     *
+     * @param columnIndex gets the index of the column
+     *                    and changes the name to what
+     *                    is stored within the array.
+     * @return column names
+     ************************************************/
+    @Override
+    public String getColumnName(int columnIndex){ return columns[columnIndex];}
+
+    @Override
+    public int getRowCount() {
+        return listDVDs.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 5;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        DVD unit = listDVDs.get(rowIndex);
+
+        switch(columnIndex){
+
+            case 0:
+                return unit.getNameOfRenter();
+            case 1:
+                return unit.getTitle();
+            case 2:
+                if (unit instanceof Game) {
+                    return ((Game) unit).getPlayer();
+                } else {
+                    return "Movie";
+                }
+            case 3:
+                return DateFormat.getDateInstance(DateFormat.SHORT)
+                        .format(unit.getRentedOn().getTime());
+            case 4:
+                return DateFormat.getDateInstance(DateFormat.SHORT)
+                        .format(unit.getDueBack().getTime());
+            default:
+                return null;
+        }
     }
 }
+
