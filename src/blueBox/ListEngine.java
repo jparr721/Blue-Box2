@@ -47,6 +47,7 @@ public class ListEngine extends AbstractTableModel {
 
 
     public void saveDatabase(String filename) {
+
         try {
             FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream os = new ObjectOutputStream(fos);
@@ -67,8 +68,8 @@ public class ListEngine extends AbstractTableModel {
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream is = new ObjectInputStream(fis);
-
             listDVDs = (LinkedList<DVD>) is.readObject();
+            fireTableRowsInserted(listDVDs.size() -1, listDVDs.size() -1);
             is.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"Error in loading db");
