@@ -14,32 +14,35 @@ import javax.swing.table.TableColumn;
 
 public class GUIRentalStore implements ActionListener {
 
+    /** JFrame object for adding things to the GUI **/
     private JFrame frame;
 
+    /** JMenuBar and JMenu declarations **/
     private JMenuBar menus;
-
     private JMenu fileMenu;
     private JMenu actionMenu;
 
-    // fileMenu
+    /** File Menu Items **/
     private JMenuItem openSerItem;
     private JMenuItem exitItem;
     private JMenuItem saveSerItem;
     private JMenuItem openTextItem;
     private JMenuItem saveTextItem;
 
-    // auto Menu
+    /** Actions Menu **/
     private JMenuItem rentDvdItem;
     private JMenuItem rentGameItem;
     private JMenuItem returnItem;
-    boolean filter;
 
-
+    /** JTable object **/
     private JTable table;
 
+    /** List Engine Object **/
     private ListEngine dList;
 
-    //private
+    /***********************************************************
+     * Default constructor to initialize instance variables
+     **********************************************************/
     public GUIRentalStore() {
 
         frame = new JFrame();
@@ -63,6 +66,9 @@ public class GUIRentalStore implements ActionListener {
 
     }
 
+    /***********************************************************
+     * Method to initialize menu objects before the GUI launches
+     **********************************************************/
     public void init() {
 
         fileMenu.add(openSerItem);
@@ -110,18 +116,29 @@ public class GUIRentalStore implements ActionListener {
 
     }
 
+    /***********************************************************
+     * Main method to launch the GUI
+     * @param args Method accepts String arguments
+     **********************************************************/
     public static void main(String[] args) {
         GUIRentalStore g = new GUIRentalStore();
         g.init();
     }
 
+    /***********************************************************
+     * Read action events based on selection and perform
+     * the necessary actions
+     * @param e reads the event
+     **********************************************************/
     public void actionPerformed(ActionEvent e) {
 
         JComponent comp = (JComponent) e.getSource();
 
+        //Exit GUI
         if (exitItem == comp)
             System.exit(0);
 
+        //Open previous saves
         if (openSerItem == comp || openTextItem == comp) {
             JFileChooser chooser = new JFileChooser();
             int status = chooser.showOpenDialog(null);
@@ -134,6 +151,7 @@ public class GUIRentalStore implements ActionListener {
             }
         }
 
+        //Save state
         if (saveSerItem == comp || saveTextItem == comp) {
             JFileChooser chooser = new JFileChooser();
             int status = chooser.showSaveDialog(null);
@@ -145,6 +163,8 @@ public class GUIRentalStore implements ActionListener {
                     dList.saveAsText(filename);
             }
         }
+
+        //Rent DVD
         if (rentDvdItem == comp) {
             DVD dvd = new DVD();
             DialogRentDvd x = new DialogRentDvd(frame, dvd);
@@ -152,7 +172,7 @@ public class GUIRentalStore implements ActionListener {
                 dList.add(dvd);
         }
 
-
+        //Rent Game
         if (rentGameItem == comp) {
             Game game = new Game();
             DialogRentGame x = new DialogRentGame(frame, game);
@@ -160,7 +180,7 @@ public class GUIRentalStore implements ActionListener {
                 dList.add(game);
         }
 
-
+        //Return Game/DVD
         if (returnItem == e.getSource()) {
             int index = table.getSelectedRow();
             if (index != -1) {

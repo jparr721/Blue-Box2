@@ -304,6 +304,12 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         return result;
     }
 
+    /************************************************************
+     * Add a new value at the specified index
+     * @param i Specifies the index to insert the value
+     * @param o Specifies the object to be placed in the location
+     *          that is specified by parameter i
+     ***********************************************************/
     @Override
     public void add(int i, E o) {
         if ((i < 0 || i >= size()))
@@ -333,6 +339,13 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         }
     }
 
+    /************************************************************
+     * Removes an object of the Linked List at a specified index
+     * i
+     * @param i Specifies the index
+     * @return The value of the pointer, which is where the object
+     * we are referencing lies.
+     ***********************************************************/
     @Override
     public E remove(int i) {
         if ((i < 0) || (i >= size()))

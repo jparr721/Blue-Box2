@@ -16,16 +16,23 @@ import java.util.GregorianCalendar;
 
 public class DialogRentGame  extends JDialog implements ActionListener {
 
+    /** JTextField Objects for user input **/
     private JTextField titleTxt;
     private JTextField renterTxt;
     private JTextField rentedOnTxt;
     private JTextField DueBackTxt;
+
+    /** JComboBox Object for storing enum **/
     private JComboBox playerJbox;
 
+    /** JButtons for Ok or cancel of a purchase **/
     private JButton okButton;
     private JButton cancelButton;
+
+    /** Boolean to check if the GUI is closed **/
     private boolean closeStatus;
 
+    /** Game Object to store values for Linked List **/
     private Game unit;
 
     /*********************************************************

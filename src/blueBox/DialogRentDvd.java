@@ -17,15 +17,20 @@ import java.util.GregorianCalendar;
 
 public class DialogRentDvd  extends JDialog implements ActionListener {
 
+    /** JTextFields for user input **/
     private JTextField titleTxt;
     private JTextField renterTxt;
     private JTextField rentedOnTxt;
     private JTextField DueBackTxt;
 
+    /** Buttons for ok or cancel of a purchase **/
     private JButton okButton;
     private JButton cancelButton;
+
+    /** Boolean to check if the GUI is closed **/
     private boolean closeStatus;
 
+    /** Object of the DVD class to store values for Linked List **/
     private DVD unit;
 
     /*********************************************************

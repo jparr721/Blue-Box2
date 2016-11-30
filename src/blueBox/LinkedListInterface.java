@@ -2,6 +2,7 @@ package blueBox;
 
 /**
  * Created by Jarred on 11/29/16.
+ * Code Provided by William Miller, professor of CIS 163
  */
 public interface LinkedListInterface<E> {
 

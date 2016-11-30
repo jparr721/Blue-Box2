@@ -5,10 +5,17 @@ package blueBox;
  */
 public class LinkedListIsEmptyException extends Exception{
 
+    /***********************************************************
+     * Refrence parent Exception class to handle the error
+     * @param error
+     **********************************************************/
     public LinkedListIsEmptyException(String error){
         super(error);
     }
 
+    /***********************************************************
+     * Error thrown if the list if empty
+     **********************************************************/
     public LinkedListIsEmptyException() {
         super("ERROR: LIST IS EMPTY");
     }

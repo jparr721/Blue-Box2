@@ -2,6 +2,7 @@ package blueBox;
 
 /**
  * Created by Jarred on 11/7/16.
+ * Code provided by CIS 163 Professor William Miller.
  */
 public class DoublyLinkedNode<E> {
 
