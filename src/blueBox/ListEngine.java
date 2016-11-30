@@ -23,6 +23,9 @@ public class ListEngine extends AbstractTableModel {
 
     DVD unit;
 
+    /************************************************************
+     * Default constructor to initialize instance variables
+     ***********************************************************/
     public ListEngine() {
         super();
         unit = null;
@@ -31,6 +34,11 @@ public class ListEngine extends AbstractTableModel {
         line = "";
     }
 
+    /************************************************************
+     * Remove DVD type from the linked list and from the Table
+     * @param i Specifies the index
+     * @return
+     ***********************************************************/
     public DVD remove(int i) {
         unit = listDVDs.remove(i);
         fireTableRowsDeleted(listDVDs.size(), listDVDs.size());

@@ -8,32 +8,53 @@ import java.io.*;
 
 public class MyLinkedList<E> implements LinkedListInterface<E> {
 
+    /** Variable to keep count of the number of objects in the Linked List **/
     protected int count;
+
+    /** Doubly Linked Node objects **/
     protected DoublyLinkedNode<E> head;
     protected DoublyLinkedNode<E> tail;
 
+    /************************************************************
+     * Default constructor to initialize instance variables
+     ***********************************************************/
     public MyLinkedList(){
         head = null;
         tail = null;
         count = 0;
     }
 
+    /************************************************************
+     * Returns the size of the Linked List
+     * @return count
+     ***********************************************************/
     @Override
     public int size() {
         return count;
     }
 
+    /************************************************************
+     * Checks if the size of the linked list if 0
+     * @return true or false
+     ***********************************************************/
     @Override
     public boolean isEmpty() {
         return size() ==0 ;
     }
 
+    /************************************************************
+     * Clears the Linked List of all values
+     ***********************************************************/
     @Override
     public void clear() {
         head = tail = null;
         count = 0;
     }
 
+    /************************************************************
+     * Add a value to the beginning of the Linked List
+     * @param value specifies what will be placed
+     ***********************************************************/
     @Override
     public void addFirst(E value) {
         head = new DoublyLinkedNode<E>(value, head, null);
@@ -41,6 +62,10 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         count++;
     }
 
+    /************************************************************
+     * Add a value to the end of the Linked List
+     * @param value specifies what will be placed
+     ***********************************************************/
     @Override
     public void addLast(E value) {
         tail = new DoublyLinkedNode<E>(value, null, tail);
@@ -49,16 +74,30 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         count++;
     }
 
+    /************************************************************
+     * Returns the value of the head, or the first value in the
+     * Linked List
+     * @return Value of the head
+     ***********************************************************/
     @Override
     public E getFirst() {
         return head.value();
     }
 
+    /************************************************************
+     * Rerturns the value of the tail, or the last value in the
+     * Linked List
+     * @return Value of the tail
+     ***********************************************************/
     @Override
     public E getLast() {
         return tail.value();
     }
 
+    /************************************************************
+     * Renmove the first value of the Linked List
+     * @return The removed value
+     ***********************************************************/
     @Override
     public E removeFirst() {
 
@@ -79,6 +118,10 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         return temp.value();
     }
 
+    /************************************************************
+     * Remove the last value of the Linked list
+     * @return The removed value
+     ***********************************************************/
     @Override
     public E removeLast() {
         if (isEmpty())
@@ -92,6 +135,12 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         return temp.value();
     }
 
+    /************************************************************
+     * Remove a specified value
+     * @param value Specifies which value in the Linked List will
+     *              be removed upon invocation of the method
+     * @return null
+     ***********************************************************/
     @Override
     public E remove(E value) {
         DoublyLinkedNode<E> pointer = head;
@@ -122,27 +171,50 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         return null;
     }
 
-
+    /************************************************************
+     * Add a specified value to the Linked List at the head
+     * @param value Specifies what will be added to the Linked
+     *              List upon invocation of the method
+     ***********************************************************/
     @Override
     public void add(E value) {
         addFirst(value);
     }
 
+    /************************************************************
+     * Remove a specified value from the Linked List
+     * @return The Linked List that is one increment smaller
+     ***********************************************************/
     @Override
     public E remove() {
         return remove(size() - 1);
     }
 
+    /************************************************************
+     * Get the first value of the Linked List
+     * @return Value at location "0" in the Linked list
+     ***********************************************************/
     @Override
     public E get() {
         return get(0);
     }
 
+    /************************************************************
+     * Checks if the Linked List contains a specified value
+     * @param value Specifies which value will be checked
+     * @return false;
+     ***********************************************************/
     @Override
     public boolean contains(E value) {
         return false;
     }
 
+    /************************************************************
+     * Check the index of an element of the Linked List
+     * @param value Specifies which value you want the index of
+     *              in the Linked List
+     * @return The index of the specified value
+     ***********************************************************/
     @Override
     public int indexOf(E value) {
         int i = 0;
@@ -161,6 +233,13 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         }
     }
 
+    /************************************************************
+     * Check the end for the presence of an element of the Linked
+     * List
+     * @param value Specifies which value you would want the index
+     *              of in the Linked List
+     * @return The index of the specified value
+     ***********************************************************/
     @Override
     public int lastIndexOf(E value) {
         int i = size()-1;
@@ -180,6 +259,12 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         }
     }
 
+    /************************************************************
+     * Gets the value at a specified location
+     * @param i Stores a value in the pointer variable and searches
+     *          through the list from there to get the desired value
+     * @return The value of the pointer
+     ***********************************************************/
     @Override
     public E get(int i) {
         if (i >= size()){
@@ -194,6 +279,15 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
         return pointer.value();
     }
 
+    /************************************************************
+     * Sets a value at a specified index and places an object
+     * there as well
+     * @param i Specifies the index to insert the value
+     * @param o Specified the Object to be placed it the location
+     *          that is specified by parameter i
+     * @return the resulting data stored in that location in the
+     * Linked Lists
+     ***********************************************************/
     @Override
     public E set(int i, E o) {
         if (i >= size()) return null;
