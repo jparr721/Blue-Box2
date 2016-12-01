@@ -6,7 +6,7 @@ package blueBox;
 
 import java.io.*;
 
-public class MyLinkedList<E> implements LinkedListInterface<E> {
+public class MyLinkedList<E> implements LinkedListInterface<E>, Serializable {
 
     /** Variable to keep count of the number of objects in the Linked List **/
     protected int count;

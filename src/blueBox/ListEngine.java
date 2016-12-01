@@ -87,6 +87,7 @@ public class ListEngine extends AbstractTableModel {
             os.close();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Error in saving db");
+            ex.printStackTrace();
 
         }
     }
@@ -98,9 +99,10 @@ public class ListEngine extends AbstractTableModel {
      *******************************************************************/
     public void loadDatabase(String filename) {
         try {
-            FileInputStream fis = new FileInputStream(filename);
+            FileInputStream fis = new FileInputStream(filename); 
             ObjectInputStream is = new ObjectInputStream(fis);
             listDVDs = (MyLinkedList<DVD>) is.readObject();
+            System.out.println(listDVDs.size());
             fireTableRowsInserted(listDVDs.size() -1, listDVDs.size() -1);
             is.close();
         } catch (Exception ex) {

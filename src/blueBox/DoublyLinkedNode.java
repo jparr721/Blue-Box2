@@ -1,10 +1,12 @@
 package blueBox;
 
+import java.io.Serializable;
+
 /**
  * Created by Jarred on 11/7/16.
  * Code provided by CIS 163 Professor William Miller.
  */
-public class DoublyLinkedNode<E> {
+public class DoublyLinkedNode<E> implements Serializable {
 
     /***********************************************************
      * The actual value stored within element; provided by user.
