@@ -27,7 +27,7 @@ public class CheckOutDialog extends JDialog implements ActionListener {
     private JButton cancelButton;
     private int closeStatus;
     static final int OK = 0;
-    static final int CANCEL = 111;
+    static final int CANCEL = 11111;
 
     /*********************************************************
      Instantiate a Custom Dialog as 'modal' and wait for the
